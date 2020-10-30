@@ -17,27 +17,23 @@ const logger = createLogger("notification-worker");
     onMessage(connection, channel)
   );
 
-  process.on("SIGTERM", async () => {
+  const onTermination = async () => {
+    logger.info("stopped");
     await channel.cancel(consumerTag);
     await connection.close();
-    logger.info("stopped");
-    process.exit(0);
-  });
+    process.exit();
+  };
 
-  process.on("SIGINT", async () => {
-    await channel.cancel(consumerTag);
-    await connection.close();
-    logger.info("stopped");
-    process.exit(0);
-  });
+  process.on("SIGTERM", onTermination);
+  process.on("SIGINT", onTermination);
 })();
 
 function onMessage(connection: Connection, channel: Channel) {
   return async (message: ConsumeMessage | null): Promise<void> => {
     if (!message) {
-      await connection.close();
       logger.error("consumer canceled");
-      process.exit(0);
+      await connection.close();
+      process.exit(1);
     }
 
     const notification = parseContent<Notification>(message);
