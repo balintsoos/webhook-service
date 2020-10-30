@@ -1,6 +1,6 @@
 import amqplib, { Connection, Channel, ConsumeMessage } from "amqplib";
 import { config } from "../../config";
-import { parseContent } from "./helpers";
+import { elapsedTime, parseContent } from "./helpers";
 import { Notification, notificationsModule } from "../../modules/notifications";
 import { createLogger } from "../../modules/logger";
 
@@ -41,14 +41,18 @@ function onMessage(connection: Connection, channel: Channel) {
     }
 
     const notification = parseContent<Notification>(message);
-    logger.info("notification received", { notification });
+    logger.info("notification received");
+    const startTime = Date.now();
     try {
       await notificationsModule.sendNotification(notification);
+      logger.info("notification success", { duration: elapsedTime(startTime) });
       channel.ack(message);
-      logger.info("notification success", { notification });
     } catch (error) {
+      logger.error("notification failed", {
+        error,
+        duration: elapsedTime(startTime),
+      });
       channel.nack(message);
-      logger.error("notification failed", { error });
     }
   };
 }

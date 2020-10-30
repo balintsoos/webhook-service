@@ -5,3 +5,6 @@ export const parseContent = <T>(message: ConsumeMessage): T =>
 
 export const createMessage = (data: unknown): Buffer =>
   Buffer.from(JSON.stringify(data));
+
+export const elapsedTime = (startTime: number): number =>
+  Date.now() - startTime;
