@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  database:
+    container_name: webhook-database
+    image: 'mongo:4.4.1'
+    ports:
+      - '27017:27017'
+    volumes:
+      - './db-data:/data/db'
+
+  queue:
+    container_name: webhook-queue
+    image: rabbitmq:3.8.9-management
+    ports:
+      - 5672:5672
+      - 15672:15672
