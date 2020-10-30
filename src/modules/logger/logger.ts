@@ -1,7 +1,12 @@
-import winston from "winston";
+import winston, { Logger } from "winston";
 
-export const logger = winston.createLogger({
-  format: winston.format.json(),
-  defaultMeta: { service: "webhook-service" },
-  transports: [new winston.transports.Console()],
-});
+export const createLogger = (process: string): Logger => {
+  return winston.createLogger({
+    format: winston.format.json(),
+    transports: [new winston.transports.Console()],
+    defaultMeta: {
+      service: "webhook-service",
+      process,
+    },
+  });
+};
