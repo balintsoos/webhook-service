@@ -13,9 +13,6 @@ export interface CreateNotificationStrategy {
 export const createNotification = (
   strategy: CreateNotificationStrategy
 ): CreateNotification => (address, payload, secret) => {
-  const signature = strategy.createSignature(
-    JSON.stringify({ address, payload }),
-    secret
-  );
+  const signature = strategy.createSignature(JSON.stringify(payload), secret);
   return { address, payload, signature };
 };
