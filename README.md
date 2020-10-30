@@ -24,7 +24,7 @@ authentication and authorization
 
 unit testing for module and lib
 
-Subscription:
+Subscription request body:
 ```json
 {
   "partner": 1,
