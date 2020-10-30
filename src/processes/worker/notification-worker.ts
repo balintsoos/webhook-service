@@ -4,7 +4,7 @@ import { parseContent } from "./helpers";
 import { Notification, notificationsModule } from "../../modules/notifications";
 import { createLogger } from "../../modules/logger";
 
-const logger = createLogger("notification-logger");
+const logger = createLogger("notification-worker");
 
 (async () => {
   const connection = await amqplib.connect(config.queue.url);
