@@ -13,7 +13,7 @@ export const sendNotification = (
   const { address, payload, signature } = notification;
   const response = await strategy.post(address, payload, {
     headers: {
-      "X-Webhook-Signature": signature,
+      "X-Signature": signature,
     },
     timeout: 1000,
   });

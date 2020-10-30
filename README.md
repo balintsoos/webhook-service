@@ -23,3 +23,30 @@ authentication and authorization
 
 
 unit testing for module and lib
+
+Subscription:
+```json
+{
+  "partner": 1,
+  "address": "http://localhost:3000/test",
+  "event": "order"
+}
+```
+
+Event message content:
+```json
+{
+  "partner": 1,
+  "type": "order",
+  "data": { "foo": "bar" }
+}
+```
+
+Notification message content:
+```json
+{
+  "address": "http://localhost:3000/test",
+  "payload": { "foo": "bar" },
+  "signature": "zqGJpeN..."
+}
+```
