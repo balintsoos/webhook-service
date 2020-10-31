@@ -11,5 +11,5 @@ COPY . .
 RUN npm run build
 
 ARG PROCESS
-ENV PROCESS=${PROCESS}
-CMD ["npm", "start:${PROCESS}"]
+ENV PROCESS ${PROCESS}
+CMD npm run start:${PROCESS}

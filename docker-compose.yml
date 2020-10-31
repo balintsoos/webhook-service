@@ -21,7 +21,7 @@ services:
     build:
       context: .
       args:
-        PROCESS: web
+        - PROCESS=web
     environment:
       - PORT=8080
       - DATABASE_URL=mongodb://mongo:27017/webhook
