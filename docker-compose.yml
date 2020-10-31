@@ -15,3 +15,16 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+
+  web:
+    container_name: web
+    build:
+      context: .
+      args:
+        PROCESS: web
+    environment:
+      - PORT=8080
+      - DATABASE_URL=mongodb://mongo:27017/webhook
+      - QUEUE_URL=amqp://localhost"
+    ports:
+      - 8080:8080

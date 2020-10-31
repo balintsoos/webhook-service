@@ -18,8 +18,8 @@ export const config: Config = {
   },
   queue: {
     url: process.env.QUEUE_URL ?? "amqp://localhost",
-    events: process.env.EVENT_QUEUE_NAME ?? "events",
-    notifications: process.env.NOTIFICATION_QUEUE_NAME ?? "notifications",
+    events: "events",
+    notifications: "notifications",
   },
   web: {
     port: parseInt(process.env.PORT ?? "3000"),

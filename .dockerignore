@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+Makefile
+node_modules
+npm-debug.log
+.eslintignore
+.eslintrc
+.nvmrc
+.tsconfig.json
+dist
+db-data
