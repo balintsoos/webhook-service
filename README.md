@@ -35,7 +35,7 @@ Subscription request body:
 ```json
 {
   "partner": 1,
-  "address": "http://localhost:3000/test",
+  "address": "http://web:8080/test",
   "event": "order"
 }
 ```
@@ -52,7 +52,7 @@ Event message content:
 Notification message content:
 ```json
 {
-  "address": "http://localhost:3000/test",
+  "address": "http://web:8080/test",
   "payload": { "event": {...} },
   "signature": "zqGJpeN..."
 }

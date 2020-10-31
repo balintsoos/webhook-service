@@ -1,20 +1,24 @@
-version: '3'
+version: '3.8'
 
 services:
   database:
-    container_name: webhook-database
+    container_name: database
     image: 'mongo:4.4.1'
     ports:
       - '27017:27017'
     volumes:
       - './db-data:/data/db'
+    networks:
+      - webhook-network
 
   queue:
-    container_name: webhook-queue
+    container_name: queue
     image: rabbitmq:3.8.9-management
     ports:
       - 5672:5672
       - 15672:15672
+    networks:
+      - webhook-network
 
   web:
     container_name: web
@@ -24,7 +28,42 @@ services:
         - PROCESS=web
     environment:
       - PORT=8080
-      - DATABASE_URL=mongodb://mongo:27017/webhook
-      - QUEUE_URL=amqp://localhost"
+      - DATABASE_URL=mongodb://database:27017/webhook
     ports:
       - 8080:8080
+    networks:
+      - webhook-network
+    depends_on:
+      - database
+
+  event-worker:
+    container_name: event-worker
+    build:
+      context: .
+      args:
+        - PROCESS=event-worker
+    environment:
+      - DATABASE_URL=mongodb://database:27017/webhook
+      - QUEUE_URL=amqp://queue
+    networks:
+      - webhook-network
+    depends_on:
+      - database
+      - queue
+
+  notification-worker:
+    container_name: notification-worker
+    build:
+      context: .
+      args:
+        - PROCESS=notification-worker
+    environment:
+      - QUEUE_URL=amqp://queue
+    networks:
+      - webhook-network
+    depends_on:
+      - queue
+
+networks:
+  webhook-network:
+    driver: bridge

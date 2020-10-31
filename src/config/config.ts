@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 export interface Config {
   database: {
     url: string;
@@ -14,14 +16,14 @@ export interface Config {
 
 export const config: Config = {
   database: {
-    url: process.env.DATABASE_URL ?? "mongodb://localhost/webhook",
+    url: process.env.DATABASE_URL!,
   },
   queue: {
-    url: process.env.QUEUE_URL ?? "amqp://localhost",
+    url: process.env.QUEUE_URL!,
     events: "events",
     notifications: "notifications",
   },
   web: {
-    port: parseInt(process.env.PORT ?? "3000"),
+    port: parseInt(process.env.PORT!),
   },
 };
