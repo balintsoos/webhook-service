@@ -50,6 +50,7 @@ services:
     depends_on:
       - database
       - queue
+    restart: on-failure
 
   notification-worker:
     container_name: notification-worker
@@ -63,6 +64,7 @@ services:
       - webhook-network
     depends_on:
       - queue
+    restart: on-failure
 
 networks:
   webhook-network:
