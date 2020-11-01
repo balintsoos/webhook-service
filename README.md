@@ -26,7 +26,7 @@ Send a `POST` request to `http://localhost:8080/subscriptions` with a payload li
 ```
 
 ### Send an event:
-You can open up the [RabbitMQ Management Console](http://localhost:15672) (the user and password is `guest`) and publish messages into the `events` queue, for example:
+You can open up the [RabbitMQ Management Console](http://localhost:15672) (username and password is `guest`) and publish messages into the `events` queue, for example:
 ```json
 {
   "type": "order",
@@ -39,10 +39,6 @@ You can open up the [RabbitMQ Management Console](http://localhost:15672) (the u
 ```
 $ make test
 ```
-
-## Time spent
-
-7 hours total in about 3 days (including the writing of this README)
 
 ## Still has much room for improvement, for example
 
