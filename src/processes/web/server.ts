@@ -32,7 +32,7 @@ router.post("/subscriptions", async (context) => {
     context.body = { subscription };
   } catch (error) {
     logger.error("subscription failed", { error });
-    context.status = 500;
+    context.status = 400;
   }
 });
 

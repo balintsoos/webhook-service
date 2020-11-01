@@ -6,3 +6,7 @@ up:
 
 down:
 	docker-compose down
+
+test:
+	make up
+	npm test
