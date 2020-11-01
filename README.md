@@ -10,53 +10,53 @@
 
 ## How to use
 
+### Start everything up:
 ```
 $ make up
 ```
 
+### Subscribe to an event:
+Send a `POST` request to `http://localhost:8080/subscriptions` with a payload like this:
+```json
+{
+  "event": "order",
+  "partner": 1,
+  "address": "http://web:8080/test"
+}
+```
+
+### Send an event:
+You can open up the [RabbitMQ Management Console](http://localhost:15672) (the user and password is `guest`) and publish messages into the `events` queue, for example:
+```json
+{
+  "type": "order",
+  "partner": 1,
+  "data": { "foo": "bar" }
+}
+```
+
+### Run E2E tests:
+```
+$ make test
+```
+
 ## Time spent
 
-6-7 hours total in about 3 days (including the writing of this README)
+6 hours total in about 3 days (including the writing of this README)
 
-## Still has much room for improvement like
+## Still has much room for improvement, for example
+
+* more E2E testing, especially the business logic inside the workers
+
+* unit testing of modules
 
 * handle constantly failing webhooks with exponential backoff and/or retry limit and eventually disable them ([a good read](https://www.alphasights.com/news/exponential-backoff-with-rabbitmq?locale=en))
 
 * validate payload on `/subscriptions` endpoint
 
-* authentication and authorization
+* authentication & authorization
 
-* unit testing of modules
-
-## Examples
-useful for manual testing
-
-Subscription request body:
-```json
-{
-  "partner": 1,
-  "address": "http://web:8080/test",
-  "event": "order"
-}
-```
-
-Event message content:
-```json
-{
-  "partner": 1,
-  "type": "order",
-  "data": { "foo": "bar" }
-}
-```
-
-Notification message content:
-```json
-{
-  "address": "http://web:8080/test",
-  "payload": { ... },
-  "signature": "zqGJpeN..."
-}
-```
+* start workers after rabbitmq is properly up (use `wait-for-it.sh` instead the current `restart: on-failure`)
 
 ## lots of ideas came from these sources:
 
