@@ -42,7 +42,7 @@ $ make test
 
 ## Time spent
 
-6 hours total in about 3 days (including the writing of this README)
+7 hours total in about 3 days (including the writing of this README)
 
 ## Still has much room for improvement, for example
 
