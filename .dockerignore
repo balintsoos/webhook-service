@@ -7,6 +7,7 @@ npm-debug.log
 .eslintignore
 .eslintrc
 .nvmrc
-.tsconfig.json
+tsconfig.json
+jasmine.json
 dist
 db-data
