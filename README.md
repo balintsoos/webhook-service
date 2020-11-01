@@ -14,7 +14,7 @@
 $ make up
 ```
 
-## Time
+## Time spent
 
 6-7 hours total in about 3 days (including the writing of this README)
 
@@ -53,7 +53,7 @@ Notification message content:
 ```json
 {
   "address": "http://web:8080/test",
-  "payload": { "event": {...} },
+  "payload": { ... },
   "signature": "zqGJpeN..."
 }
 ```
