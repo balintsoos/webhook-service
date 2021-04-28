@@ -1,5 +1,6 @@
 .git
 .gitignore
+.github
 README.md
 Makefile
 node_modules
@@ -9,4 +10,3 @@ npm-debug.log
 .nvmrc
 jasmine.json
 dist
-db-data
