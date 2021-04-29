@@ -1,15 +1,18 @@
 help: ## Show this help
-	@echo "Usage:\n\n  make [target]\n\nTargets:\n"
+	@echo "\nUsage:\n\n  make [target]\n\nTargets:\n"
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/\(.*\):.*##[ \t]*/  \1 ## /' | column -t -s '##'
 	@echo
 
-build: ## Build service
+build: ## Build containers
 	docker-compose build
 
-up: ## Setup and start service
+up: ## Setup and start containers
 	docker-compose up --detach
 
-down: ## Stop and teardown service
+ps: ## Show containers
+	docker-compose ps --all
+
+down: ## Stop and teardown containers
 	docker-compose down --volumes --rmi all
 
 test: ## Run tests
