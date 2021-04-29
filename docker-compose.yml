@@ -24,7 +24,7 @@ services:
     container_name: web
     build:
       context: .
-    command: npm run start:web
+    command: ["node", "dist/processes/web/server.js"]
     environment:
       - PORT=8080
       - DATABASE_URL=mongodb://database:27017/webhook
@@ -39,7 +39,7 @@ services:
     container_name: event-worker
     build:
       context: .
-    command: npm run start:event-worker
+    command: ["node", "dist/processes/worker/event-worker.js"]
     environment:
       - DATABASE_URL=mongodb://database:27017/webhook
       - QUEUE_URL=amqp://queue
@@ -54,7 +54,7 @@ services:
     container_name: notification-worker
     build:
       context: .
-    command: npm run start:notification-worker
+    command: ["node", "dist/processes/worker/notification-worker.js"]
     environment:
       - QUEUE_URL=amqp://queue
     networks:

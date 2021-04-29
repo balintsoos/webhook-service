@@ -2,12 +2,15 @@
 .github
 dist
 node_modules
+.dockerignore
 .eslintignore
 .eslintrc
 .gitignore
 .npmrc
 .nvmrc
 docker-compose.yml
+Dockerfile
 jasmine.json
 Makefile
+npm-debug.log
 README.md

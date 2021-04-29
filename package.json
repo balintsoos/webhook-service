@@ -7,10 +7,7 @@
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "e2e": "ts-node ./node_modules/jasmine/bin/jasmine --config=jasmine.json",
-    "test": "npm run lint && npm run e2e",
-    "start:web": "node dist/processes/web/server.js",
-    "start:event-worker": "node dist/processes/worker/event-worker.js",
-    "start:notification-worker": "node dist/processes/worker/notification-worker.js"
+    "test": "npm run lint && npm run e2e"
   },
   "author": "Balint Soos",
   "license": "MIT",
