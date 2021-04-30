@@ -2,7 +2,6 @@ FROM node:15.12.0-alpine AS base
 
 WORKDIR /app
 
-COPY LICENSE ./
 COPY package*.json ./
 
 FROM base AS build
