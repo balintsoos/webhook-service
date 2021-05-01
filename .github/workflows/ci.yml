@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Check out repository
         uses: actions/checkout@v2
 
       - name: Set up QEMU
@@ -39,5 +39,6 @@ jobs:
         with:
           context: .
           target: production
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service:latest
