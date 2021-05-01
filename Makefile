@@ -14,6 +14,3 @@ ps: ## Show containers
 
 down: ## Stop and teardown containers
 	docker-compose down --volumes --rmi all
-
-test: ## Run tests
-	npm test

@@ -52,10 +52,28 @@ jobs:
         name: Lint
         run: docker run --rm ${{ env.IMAGE_NAME }}:test npm run lint
 
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    needs: build-test-image
+    steps:
+      -
+        name: Download test image
+        uses: actions/download-artifact@v2
+        with:
+          name: test_image
+          path: /tmp
+      -
+        name: Load test image
+        run: docker load --input /tmp/test_image.tar
+      -
+        name: Run unit tests
+        run: docker run --rm ${{ env.IMAGE_NAME }}:test npm run unit
+
   build-and-push-production-image:
     name: Build and push production image
     runs-on: ubuntu-latest
-    needs: lint
+    needs: [ lint, unit-tests ]
     steps:
       - 
         name: Check out repository

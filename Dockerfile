@@ -14,7 +14,7 @@ COPY src ./src
 FROM source as test
 
 COPY .eslint* ./
-COPY jasmine.json ./
+COPY jasmine*.json ./
 
 FROM source as build
 
