@@ -89,7 +89,7 @@ jobs:
         run: docker load --input /tmp/test_image.tar
       -
         name: Start Docker Compose
-        run: docker-compose -f docker-compose.e2e.yml up web event-worker notification-worker --detach
+        run: docker-compose -f docker-compose.e2e.yml up --detach web event-worker notification-worker
       -
         name: Run E2E tests
         run: docker-compose -f docker-compose.e2e.yml up e2e-runner
