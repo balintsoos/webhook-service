@@ -60,6 +60,19 @@ services:
       - queue
     restart: on-failure
 
+  e2e-runner:
+    container_name: e2e-runner
+    image: balintsoos/webhook-service:test
+    command: ["npm", "run", "e2e"]
+    environment:
+      - WEB_BASE_URL=http://web:8080
+    networks:
+      - service-network
+    depends_on:
+      - web
+      - event-worker
+      - notification-worker
+
 networks:
   service-network:
     driver: bridge
