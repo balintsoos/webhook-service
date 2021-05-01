@@ -6,6 +6,7 @@ on:
 
 jobs:
   run-tests:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - 
@@ -20,6 +21,7 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service:test
 
   build-and-push-production-image:
+    name: Build and push production image
     runs-on: ubuntu-latest
     needs: run-tests
     steps:
