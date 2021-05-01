@@ -4,12 +4,19 @@ WORKDIR /app
 
 COPY package*.json ./
 
-FROM base AS build
+FROM base AS source
 
 RUN npm ci
 
-COPY src ./src
 COPY tsconfig.json ./
+COPY src ./src
+
+FROM source as test
+
+COPY .eslint* ./
+COPY jasmine.json ./
+
+FROM source as build
 
 RUN npm run build
 
