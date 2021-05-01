@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+env:
+  IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service
+
 jobs:
   run-tests:
     name: Run tests
@@ -18,7 +21,7 @@ jobs:
         with:
           context: .
           target: test
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service:test
+          tags: ${{ env.IMAGE_NAME }}:test
 
   build-and-push-production-image:
     name: Build and push production image
@@ -48,4 +51,4 @@ jobs:
           target: production
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service:latest
+          tags: ${{ env.IMAGE_NAME }}:latest
