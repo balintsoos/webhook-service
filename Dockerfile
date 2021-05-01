@@ -6,7 +6,7 @@ COPY package*.json ./
 
 FROM base AS source
 
-RUN npm ci
+RUN npm ci && npm cache clean --force
 
 COPY tsconfig.json ./
 COPY src ./src
@@ -24,7 +24,7 @@ FROM base AS production
 
 ENV NODE_ENV production
 
-RUN npm ci --only=production
+RUN npm ci --only=production && npm cache clean --force
 
 COPY --from=build /app/dist ./dist
 
