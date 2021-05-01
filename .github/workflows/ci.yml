@@ -8,8 +8,8 @@ env:
   IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service
 
 jobs:
-  run-tests:
-    name: Run tests
+  build-test-image:
+    name: Build test image
     runs-on: ubuntu-latest
     steps:
       - 
@@ -22,11 +22,37 @@ jobs:
           context: .
           target: test
           tags: ${{ env.IMAGE_NAME }}:test
+          outputs: type=docker,dest=/tmp/test_image.tar
+      -
+        name: Upload test image
+        uses: actions/upload-artifact@v2
+        with:
+          name: test_image
+          path: /tmp/test_image.tar
+          retention-days: 1
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: build-test-image
+    steps:
+      -
+        name: Download test image
+        uses: actions/download-artifact@v2
+        with:
+          name: test_image
+          path: /tmp
+      -
+        name: Load test image
+        run: docker load --input /tmp/test_image.tar
+      -
+        name: Lint
+        run: docker run --rm ${{ env.IMAGE_NAME }}:test npm run lint
 
   build-and-push-production-image:
     name: Build and push production image
     runs-on: ubuntu-latest
-    needs: run-tests
+    needs: lint
     steps:
       - 
         name: Check out repository
