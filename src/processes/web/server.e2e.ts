@@ -1,8 +1,7 @@
 import Axios from "axios";
 import { Subscription } from "../../modules/subscriptions";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const baseUrl = process.env.WEB_BASE_URL!;
+const baseUrl = "http://localhost:8080";
 
 describe("Web process", () => {
   describe("GET /healthcheck", () => {
