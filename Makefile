@@ -1,4 +1,4 @@
-docker-compose = docker-compose --file docker-compose.dev.yml
+docker-compose = docker-compose
 
 help: ## Show this help
 	@echo "\nUsage:\n\n  make [target]\n\nTargets:\n"

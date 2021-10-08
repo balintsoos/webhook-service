@@ -35,14 +35,9 @@ You can open up the [RabbitMQ Management Console](http://localhost:15672) (usern
 }
 ```
 
-### Run E2E tests:
-```
-$ make test
-```
-
 ## Still has much room for improvement, for example
 
-* more E2E testing, especially the business logic inside the workers
+* E2E testing, especially the business logic inside the workers
 
 * unit testing of modules
 
