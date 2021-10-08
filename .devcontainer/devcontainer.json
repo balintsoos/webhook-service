@@ -1,0 +1,9 @@
+{
+  "name": "webhook-service",
+  "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:16-bullseye",
+  "extensions": [
+	  "dbaeumer.vscode-eslint",
+	  "editorconfig.editorconfig",
+	  "esbenp.prettier-vscode"
+  ]
+}
