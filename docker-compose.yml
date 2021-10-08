@@ -3,7 +3,7 @@ version: "3.8"
 services:
   database:
     container_name: database
-    image: mongo:4.4.1
+    image: mongo:4.4.9
     ports:
       - 27017:27017
     volumes:
@@ -13,7 +13,7 @@ services:
 
   queue:
     container_name: queue
-    image: rabbitmq:3.8.9-management
+    image: rabbitmq:3.9.7-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
