@@ -9,12 +9,8 @@ import { createLogger } from "../../modules/logger";
 
 const logger = createLogger("event-worker");
 
-mongoose.connect(config.database.url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 (async () => {
+  await mongoose.connect(config.database.url);
   const connection = await amqplib.connect(config.queue.url);
   const channel = await connection.createChannel();
   await channel.assertQueue(config.queue.events);
@@ -35,6 +31,8 @@ mongoose.connect(config.database.url, {
 
   process.on("SIGTERM", onTermination);
   process.on("SIGINT", onTermination);
+
+  logger.info("started");
 })();
 
 function onMessage(connection: Connection, channel: Channel) {
@@ -77,5 +75,3 @@ function onSubscription(channel: Channel, event: Event) {
     logger.info("notification published");
   };
 }
-
-logger.info("started");

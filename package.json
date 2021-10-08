@@ -17,7 +17,7 @@
     "@types/koa": "2.13.4",
     "@types/koa__router": "8.0.8",
     "@types/koa-bodyparser": "4.3.3",
-    "@types/mongoose": "5.10.4",
+    "@types/mongoose": "5.11.97",
     "@types/node": "16.10.3",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
@@ -33,7 +33,7 @@
     "axios": "0.22.0",
     "koa": "2.13.3",
     "koa-bodyparser": "4.3.0",
-    "mongoose": "5.12.2",
+    "mongoose": "6.0.9",
     "winston": "3.3.3"
   }
 }

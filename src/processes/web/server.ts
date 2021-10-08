@@ -10,10 +10,7 @@ const app = new Koa();
 const router = new Router();
 const logger = createLogger("web");
 
-mongoose.connect(config.database.url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(config.database.url);
 
 router.get("/healthcheck", (context) => {
   context.status = 200;
