@@ -8,17 +8,25 @@ env:
   IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/webhook-service
 
 jobs:
+  test-chrome:
+    name: Test chrome
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Test chrome
+        run: chrome --version
+
   build-both-w-qemu:
     name: Build amd64 and arm64 images with qemu
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Check out repository
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      - 
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -29,18 +37,18 @@ jobs:
           target: production
           platforms: linux/amd64,linux/arm64
           tags: ${{ env.IMAGE_NAME }}:latest
-  
+
   build-amd64-w-qemu:
     name: Build amd64 image with qemu
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Check out repository
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      - 
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -56,10 +64,10 @@ jobs:
     name: Build amd64 image without qemu
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Check out repository
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -75,13 +83,13 @@ jobs:
     name: Build arm64 image with qemu
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Check out repository
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      - 
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -97,10 +105,10 @@ jobs:
     name: Build arm64 image without qemu (should fail)
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Check out repository
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
